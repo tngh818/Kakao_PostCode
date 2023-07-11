@@ -34,7 +34,7 @@
       }
 
       function postMessageToiOS(postData) {
-        window.webkit.messageHandlers.callBackHandler.postMessage(postData);
+        window.webkit.messageHandlers.searchResult.postMessage(postData);
       }
 
       var element_layer = document.getElementById("layer");
@@ -54,7 +54,15 @@
               jibunAddress: jibunAddress,
               zonecode: data.zonecode,
             };
-            window.postMessageToiOS(postData);
+
+            var varUA = navigator.userAgent.toLowerCase()
+
+            if (varUA.indexOf("android") > -1 {
+                window.Android.searchResult(postData);
+            } else if ( varUA.indexOf("iphone") > -1||varUA.indexOf("ipad") > -1||varUA.indexOf("ipod") > -1 ) {
+                 window.postMessageToiOS(postData);
+            }
+           
           },
           width: "100%",
           height: "100%",
